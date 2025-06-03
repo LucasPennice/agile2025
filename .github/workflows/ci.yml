@@ -2,18 +2,41 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install
-      - run: npm test
+          cache: "pnpm"
+
+      - run: pnpm install
+
+      - name: Lint
+        run: pnpm eslint .
+
+      - name: Type Coverage
+        run: pnpm type-coverage
+
+      - name: Type Check
+        run: pnpm tsc --noEmit
+
+      - name: Test + Coverage
+        run: pnpm vitest run --coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: 67ab562f-f76c-4b80-a096-3d6dc16f34f3
