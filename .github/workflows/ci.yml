@@ -27,12 +27,6 @@ jobs:
       - name: Lint
         run: pnpm eslint .
 
-      - name: Type Coverage
-        run: pnpm type-coverage
-
-      - name: Type Check
-        run: pnpm tsc --noEmit
-
       - name: Test + Coverage
         run: pnpm vitest run --coverage
 

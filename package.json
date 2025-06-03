@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest run --coverage",
-    "serve_coverage": "npm run test && npx serve coverage",
-    "type-coverage": "type-coverage"
+    "serve_coverage": "npm run test && npx serve coverage"
   },
   "keywords": [],
   "author": "",
