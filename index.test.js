@@ -1,5 +1,4 @@
-import { afterAll, afterEach, describe, expect, it, vi, vitest } from "vitest";
-import { beforeEach } from "vitest";
+import { describe, expect, it } from "vitest";
 import { adivinarLetra } from ".";
 
 describe("adivinarLetra", () => {
