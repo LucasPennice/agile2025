@@ -62,4 +62,14 @@ describe("ingresarUsuario", () => {
     const nuevoEstado = ingresarUsuario(estado, "");
   expect(nuevoEstado.username!=undefined).toBe(true);
   });
+  it("test_debe_ser_string", () => {
+    const estado = {
+      letrasAdivinadas: [],
+      palabraAAdivinar: "",
+      partidaTerminada: false,
+      username: undefined,
+    };
+    const nuevoEstado = ingresarUsuario(estado, 123);
+    expect(nuevoEstado.username).toBe("Usuario");
+  });
 });

@@ -33,7 +33,7 @@ function iniciarPartida() {
 }
 
 export function ingresarUsuario(estado, username) {
-  if (estado.username==undefined || estado.username === "") 
+  if (estado.username === "") 
   return{
     ...estado,
     username: "Usuario"
