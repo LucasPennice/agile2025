@@ -32,9 +32,16 @@ function iniciarPartida() {
   mostrarResultadoFinal(estado);*/
 }
 
-export function ingresarUsuario(estado) {
+export function ingresarUsuario(estado, username) {
+  if (estado.username==undefined || estado.username === "") 
   return{
-    ...estado, };
+    ...estado,
+    username: "Usuario"
+  };
+  return{
+    ...estado,
+    username
+  };
 }
 export function setearPalabraAAdivinar() {}
 export function adivinarLetraMigrar() {}
