@@ -20,18 +20,22 @@ function iniciarPartida() {
   };
 
   estado = ingresarUsuario(estado);
-  estado = setearPalabraAAdivinar(estado);
+  /*estado = setearPalabraAAdivinar(estado);
 
   do {
     estado = adivinarLetraMigrar("A", estado);
     mostrarProgresoMigrar(estado);
     estado.partidaTerminada = checkearSiTerminaPartida(estado);
+    estado.partidaTerminada = false; // Reset para el ejemplo
   } while (estado.partidaTerminada == false);
 
-  mostrarResultadoFinal(estado);
+  mostrarResultadoFinal(estado);*/
 }
 
-export function ingresarUsuario() {}
+export function ingresarUsuario(estado) {
+  return{
+    ...estado, };
+}
 export function setearPalabraAAdivinar() {}
 export function adivinarLetraMigrar() {}
 export function mostrarProgresoMigrar() {}

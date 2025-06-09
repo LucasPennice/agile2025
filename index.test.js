@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { adivinarLetra, mostrarProgreso } from ".";
+import { adivinarLetra, mostrarProgreso, ingresarUsuario } from ".";
 
 describe("adivinarLetra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
@@ -48,5 +48,18 @@ describe("mostrarProgreso", () => {
   it("test_se_ignoran_mayusculas_minusculas_al_mostrar_progreso", () => {
     const resultado = mostrarProgreso("ESCALERA", ["e", "a"]);
     expect(resultado).toBe("E _ _ A _ E _ A");
+  });
+});
+
+describe("ingresarUsuario", () => {
+  it("test_no_debe_estar_vacio", () => {
+    const estado = {
+      letrasAdivinadas: [],
+      palabraAAdivinar: "",
+      partidaTerminada: false,
+      username: undefined,
+    };
+    const nuevoEstado = ingresarUsuario(estado, "");
+  expect(nuevoEstado.username!=undefined).toBe(true);
   });
 });
