@@ -11,7 +11,7 @@
  */
 
 const PALABRA_A_ADIVINAR = "ESCALERA";
-
+/*
 function iniciarPartida() {
   let estado = {
     letrasAdivinadas: [],
@@ -39,6 +39,7 @@ export function checkearSiTerminaPartida() {}
 export function mostrarResultadoFinal() {}
 
 iniciarPartida();
+*/
 
 export function adivinarLetra(letra, letrasYaAdivinadas = []) {
   const letraMayus = letra.toUpperCase();
@@ -61,3 +62,11 @@ export function mostrarProgreso(palabra, letrasAdivinadas) {
     )
     .join(" ");
 }
+
+export function setearPalabraAAdivinar(estado, palabra = "ESCALERA") {
+  return {
+    ...estado,
+    palabraAAdivinar: palabra,
+  };
+}
+

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { adivinarLetra, mostrarProgreso } from ".";
+import { adivinarLetra, mostrarProgreso, setearPalabraAAdivinar } from ".";
 
 describe("adivinarLetra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
@@ -50,3 +50,17 @@ describe("mostrarProgreso", () => {
     expect(resultado).toBe("E _ _ A _ E _ A");
   });
 });
+describe("setearPalabraAAdivinar", () => {
+    it("debe guardar la palabra a adivinar en el estado", () => {
+      const estadoInicial = {
+        letrasAdivinadas: [],
+        palabraAAdivinar: "",
+        partidaTerminada: false,
+      };
+
+      const estadoActualizado = setearPalabraAAdivinar(estadoInicial, "GATO");
+
+      expect(estadoActualizado.palabraAAdivinar).toBe("GATO");
+    });
+  });
+
