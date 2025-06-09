@@ -23,21 +23,18 @@ describe("adivinarLetra", () => {
   });
 });
 
-
-
 describe("adivinaPalabra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
     expect(adivinarLetra("J")).toBe(false);
   });
 });
 
-
 describe("mostrarProgreso", () => {
   it("test_no_se_adivino_ninguna_letra_muestra_guiones", () => {
     const resultado = mostrarProgreso("ESCALERA", []);
     expect(resultado).toBe("_ _ _ _ _ _ _ _");
   });
-   it("test_se_muestran_letras_adivinadas_y_guiones", () => {
+  it("test_se_muestran_letras_adivinadas_y_guiones", () => {
     const resultado = mostrarProgreso("ESCALERA", ["E", "A"]);
     expect(resultado).toBe("E _ _ A _ E _ A");
   });

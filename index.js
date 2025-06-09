@@ -1,4 +1,44 @@
+/**
+ * Inicial partida ()
+ * Ingresar usuario (estado,string) -> (estadoActualizado)
+ * Setear palabra a adivinar (estado,string) -> (estadoActualizado)
+ * Loop {
+ *  Adivinar letra ⚠️ (letra, letras adivinadas, estado) -> (estadoActualizado)
+ *  Mostrar resultado parcial ⚠️ (estado) -> ()
+ *  Checkear si termina la partida (estado) -> ()
+ * }
+ * Mostrar resultado final (estado) -> ()
+ */
+
 const PALABRA_A_ADIVINAR = "ESCALERA";
+
+function iniciarPartida() {
+  let estado = {
+    letrasAdivinadas: [],
+    palabraAAdivinar: "",
+    partidaTerminada: false,
+  };
+
+  estado = ingresarUsuario(estado);
+  estado = setearPalabraAAdivinar(estado);
+
+  do {
+    estado = adivinarLetraMigrar("A", estado);
+    mostrarProgresoMigrar(estado);
+    estado.partidaTerminada = checkearSiTerminaPartida(estado);
+  } while (estado.partidaTerminada == false);
+
+  mostrarResultadoFinal(estado);
+}
+
+export function ingresarUsuario() {}
+export function setearPalabraAAdivinar() {}
+export function adivinarLetraMigrar() {}
+export function mostrarProgresoMigrar() {}
+export function checkearSiTerminaPartida() {}
+export function mostrarResultadoFinal() {}
+
+iniciarPartida();
 
 export function adivinarLetra(letra, letrasYaAdivinadas = []) {
   const letraMayus = letra.toUpperCase();
@@ -15,7 +55,7 @@ export function mostrarProgreso(palabra, letrasAdivinadas) {
 
   return letras
     .map((letra) =>
-      letrasAdivinadas.map(l => l.toUpperCase()).includes(letra.toUpperCase())
+      letrasAdivinadas.map((l) => l.toUpperCase()).includes(letra.toUpperCase())
         ? letra.toUpperCase()
         : "_"
     )
