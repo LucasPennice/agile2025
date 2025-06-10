@@ -86,20 +86,38 @@ describe("mostrarProgreso", () => {
 
     expect(mostrarProgreso(estadoInicial)).toBe("_ _ _ _ _ _ _ _");
   });
+
   it("test_se_muestran_letras_adivinadas_y_guiones", () => {
-    const resultado = mostrarProgreso("ESCALERA", ["E", "A"]);
-    expect(resultado).toBe("E _ _ A _ E _ A");
+    let estadoInicial = {
+      letrasYaAdivinadas: ["E", "A"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+  
+    expect(mostrarProgreso(estadoInicial)).toBe("E _ _ A _ E _ A");
   });
+  
 
   it("test_todas_las_letras_adivinadas_muestra_palabra_completa", () => {
-    const letras = Array.from(new Set("ESCALERA".split("")));
-    const resultado = mostrarProgreso("ESCALERA", letras);
-    expect(resultado).toBe("E S C A L E R A");
+    let estadoInicial = {
+      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+
+    expect(mostrarProgreso(estadoInicial)).toBe("E S C A L E R A");
   });
 
   it("test_se_ignoran_mayusculas_minusculas_al_mostrar_progreso", () => {
-    const resultado = mostrarProgreso("ESCALERA", ["e", "a"]);
-    expect(resultado).toBe("E _ _ A _ E _ A");
+    let estadoInicial = {
+      letrasYaAdivinadas: ["e", "a"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+    expect(mostrarProgreso(estadoInicial)).toBe("E _ _ A _ E _ A");
   });
 });
 
