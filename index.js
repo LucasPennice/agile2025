@@ -11,7 +11,7 @@
  */
 
 const PALABRA_A_ADIVINAR = "ESCALERA";
-/*
+/* 
 function iniciarPartida() {
   let estado = {
     letrasAdivinadas: [],
@@ -30,7 +30,7 @@ function iniciarPartida() {
   } while (estado.partidaTerminada == false);
 
   mostrarResultadoFinal(estado);*/
-}
+//}
 
 export function ingresarUsuario(estado, username) {
   if (typeof username !== 'string' && username !== "")
@@ -43,14 +43,14 @@ export function ingresarUsuario(estado, username) {
     username
   };
 }
-export function setearPalabraAAdivinar() {}
+
 export function adivinarLetraMigrar() {}
 export function mostrarProgresoMigrar() {}
 export function checkearSiTerminaPartida() {}
 export function mostrarResultadoFinal() {}
 
-iniciarPartida();
-*/
+//iniciarPartida();
+
 
 export function adivinarLetra(letra, letrasYaAdivinadas = []) {
   const letraMayus = letra.toUpperCase();
