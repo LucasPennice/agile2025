@@ -24,7 +24,7 @@ function iniciarPartida() {
   /*estado = setearPalabraAAdivinar(estado);
 
   do {
-    estado = adivinarLetraMigrar("A", estado);
+    estado = adivinarLetra("A", estado);
     mostrarProgresoMigrar(estado);
     estado.partidaTerminada = checkearSiTerminaPartida(estado);
     estado.partidaTerminada = false; // Reset para el ejemplo
@@ -65,12 +65,14 @@ export function adivinarLetra(letra, estado) {
   };
 }
 
-export function mostrarProgreso(palabra, letrasAdivinadas) {
-  const letras = palabra.split("");
+export function mostrarProgreso(estado) {
+  const letras = estado.palabraAAdivinar.split("");
 
   return letras
     .map((letra) =>
-      letrasAdivinadas.map((l) => l.toUpperCase()).includes(letra.toUpperCase())
+      estado.letrasYaAdivinadas
+        .map((l) => l.toUpperCase())
+        .includes(letra.toUpperCase())
         ? letra.toUpperCase()
         : "_"
     )

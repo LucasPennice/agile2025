@@ -77,8 +77,14 @@ describe("adivinaPalabra", () => {
 
 describe("mostrarProgreso", () => {
   it("test_no_se_adivino_ninguna_letra_muestra_guiones", () => {
-    const resultado = mostrarProgreso("ESCALERA", []);
-    expect(resultado).toBe("_ _ _ _ _ _ _ _");
+    let estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+
+    expect(mostrarProgreso(estadoInicial)).toBe("_ _ _ _ _ _ _ _");
   });
   it("test_se_muestran_letras_adivinadas_y_guiones", () => {
     const resultado = mostrarProgreso("ESCALERA", ["E", "A"]);
