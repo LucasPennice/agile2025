@@ -1,31 +1,77 @@
 import { describe, expect, it } from "vitest";
-import { adivinarLetra, mostrarProgreso, setearPalabraAAdivinar, ingresarUsuario } from ".";
+import {
+  adivinarLetra,
+  mostrarProgreso,
+  setearPalabraAAdivinar,
+  ingresarUsuario,
+} from ".";
 
 describe("adivinarLetra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
-    expect(adivinarLetra("J")).toBe(false);
+    let estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
+
+    estadoInicial = adivinarLetra("J", estadoInicial);
+
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
   });
 
   it("test_adivina_si_tiene_e_si_tiene", () => {
-    expect(adivinarLetra("E")).toBe(true);
+    let estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
+
+    estadoInicial = adivinarLetra("e", estadoInicial);
+
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(true);
   });
 
   it("test_no_se_puede_repetir_la_misma_letra", () => {
-    const letrasYaAdivinadas = ["E", "D"];
+    let estadoInicial = {
+      letrasYaAdivinadas: ["E", "D"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
 
-    expect(adivinarLetra("E", letrasYaAdivinadas)).toBe(false);
+    estadoInicial = adivinarLetra("E", estadoInicial);
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
   });
 
   it("debe ser insensible a mayúsculas/minúsculas", () => {
-    expect(adivinarLetra("e")).toBe(true);
-    expect(adivinarLetra("s")).toBe(true);
-    expect(adivinarLetra("j")).toBe(false);
+    let estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+
+    estadoInicial = adivinarLetra("e", estadoInicial);
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(true);
+
+    estadoInicial = adivinarLetra("s", estadoInicial);
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(true);
+
+    estadoInicial = adivinarLetra("j", estadoInicial);
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
   });
 });
 
 describe("adivinaPalabra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
-    expect(adivinarLetra("J")).toBe(false);
+    let estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      ultimoIntentoCorrecto: true,
+    };
+
+    estadoInicial = adivinarLetra("J", estadoInicial);
+    expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
   });
 });
 
@@ -52,35 +98,34 @@ describe("mostrarProgreso", () => {
 });
 
 describe("setearPalabraAAdivinar", () => {
-    it("debe guardar la palabra a adivinar en el estado", () => {
-      const estadoInicial = {
-        letrasAdivinadas: [],
-        palabraAAdivinar: "",
-        partidaTerminada: false,
-      };
+  it("debe guardar la palabra a adivinar en el estado", () => {
+    const estadoInicial = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
 
-      const estadoActualizado = setearPalabraAAdivinar(estadoInicial, "GATO");
+    const estadoActualizado = setearPalabraAAdivinar(estadoInicial, "GATO");
 
-      expect(estadoActualizado.palabraAAdivinar).toBe("GATO");
-    });
+    expect(estadoActualizado.palabraAAdivinar).toBe("GATO");
   });
-
+});
 
 describe("ingresarUsuario", () => {
   it("test_no_debe_estar_vacio", () => {
     const estado = {
-      letrasAdivinadas: [],
-      palabraAAdivinar: "",
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
     };
     const nuevoEstado = ingresarUsuario(estado, "");
-  expect(nuevoEstado.username!=undefined).toBe(true);
+    expect(nuevoEstado.username != undefined).toBe(true);
   });
   it("test_debe_ser_string", () => {
     const estado = {
-      letrasAdivinadas: [],
-      palabraAAdivinar: "",
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
     };

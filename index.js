@@ -14,9 +14,10 @@ const PALABRA_A_ADIVINAR = "ESCALERA";
 /* 
 function iniciarPartida() {
   let estado = {
-    letrasAdivinadas: [],
+    letrasYaAdivinadas: [],
     palabraAAdivinar: "",
     partidaTerminada: false,
+    ultimoIntentoCorrecto: true
   };
 
   estado = ingresarUsuario(estado);
@@ -33,33 +34,35 @@ function iniciarPartida() {
 //}
 
 export function ingresarUsuario(estado, username) {
-  if (typeof username !== 'string' && username !== "")
-  return{
+  if (typeof username !== "string" && username !== "")
+    return {
+      ...estado,
+      username: "Usuario",
+    };
+  return {
     ...estado,
-    username: "Usuario"
-  };
-  return{
-    ...estado,
-    username
+    username,
   };
 }
 
-export function adivinarLetraMigrar() {}
 export function mostrarProgresoMigrar() {}
 export function checkearSiTerminaPartida() {}
 export function mostrarResultadoFinal() {}
 
 //iniciarPartida();
 
-
-export function adivinarLetra(letra, letrasYaAdivinadas = []) {
+export function adivinarLetra(letra, estado) {
   const letraMayus = letra.toUpperCase();
 
   // Ya fue adivinada
-  if (letrasYaAdivinadas.includes(letraMayus)) return false;
+  if (estado.letrasYaAdivinadas.includes(letraMayus))
+    return { ...estado, ultimoIntentoCorrecto: false };
 
   // Verificar si está en la palabra
-  return PALABRA_A_ADIVINAR.includes(letraMayus);
+  return {
+    ...estado,
+    ultimoIntentoCorrecto: PALABRA_A_ADIVINAR.includes(letraMayus),
+  };
 }
 
 export function mostrarProgreso(palabra, letrasAdivinadas) {
@@ -80,4 +83,3 @@ export function setearPalabraAAdivinar(estado, palabra = "ESCALERA") {
     palabraAAdivinar: palabra,
   };
 }
-
