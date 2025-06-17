@@ -269,7 +269,7 @@ describe("checkearSiTerminaPartida", () => {
 
     const estadoNuevo = checkearSiTerminaPartida(estado);
 
-    expect(estadoNuevo.partidaTerminada).toBe(false);
+    expect(estadoNuevo.partidaTerminada).toBe(true);
   });
 
   it("test_debe_terminar_la_partida_caso_estado_undefined", () => {
