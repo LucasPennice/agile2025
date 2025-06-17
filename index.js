@@ -1,3 +1,5 @@
+import readline from "readline";
+
 /**
  * Inicial partida ()
  * Ingresar usuario (estado,string) -> (estadoActualizado)
@@ -10,10 +12,50 @@
  * Mostrar resultado final (estado) -> ()
  */
 
-const PALABRA_A_ADIVINAR = "ESCALERA";
+async function leerCaracter() {
+  const rl = readline.createInterface({
+    // eslint-disable-next-line no-undef
+    input: process.stdin,
+    // eslint-disable-next-line no-undef
+    output: process.stdout,
+  });
 
-/* 
-function iniciarPartida() {
+  return new Promise((resolve) => {
+    rl.question("Ingresa un carácter: ", (input) => {
+      rl.close();
+      if (input.length === 1) {
+        resolve(input);
+      } else {
+        console.log("Por favor, ingresa solo un carácter.");
+        resolve(null); // Retornar null si no es válido
+      }
+    });
+  });
+}
+
+async function leerPalabra(prompt = "Ingresa una palabra: ") {
+  const rl = readline.createInterface({
+    // eslint-disable-next-line no-undef
+    input: process.stdin,
+    // eslint-disable-next-line no-undef
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(`${prompt}`, (input) => {
+      rl.close();
+      if (/^\w+$/.test(input)) {
+        // Validar que sea una palabra (sin espacios)
+        resolve(input);
+      } else {
+        console.log("Por favor, ingresa una palabra válida (sin espacios).");
+        resolve(null); // Retornar null si no es válida
+      }
+    });
+  });
+}
+
+async function iniciarPartida() {
   let estado = {
     letrasYaAdivinadas: [],
     palabraAAdivinar: "",
@@ -22,25 +64,32 @@ function iniciarPartida() {
     vidas: 6,
   };
 
-  estado = ingresarUsuario(estado);
-  /*estado = setearPalabraAAdivinar(estado);
+  const username = await leerPalabra("Ingresa tu nombre de usuario: ");
+  estado = ingresarUsuario(estado, username);
+
+  const palabraAAdivinar = await leerPalabra("Ingresa la palabra a adivinar: ");
+  estado = setearPalabraAAdivinar(estado, palabraAAdivinar);
 
   do {
-    estado = adivinarLetra("A", estado);
-    mostrarProgresoMigrar(estado);
-    estado.partidaTerminada = checkearSiTerminaPartida(estado);
-    estado.partidaTerminada = false; // Reset para el ejemplo
+    const input = await leerCaracter(); // Esperar hasta que el usuario ingrese un carácter
+    estado = adivinarLetra(input, estado);
+
+    console.log(mostrarProgreso(estado));
+
+    estado = checkearSiTerminaPartida(estado);
   } while (estado.partidaTerminada == false);
 
-  mostrarResultadoFinal(estado);*/
-//}
+  console.log(mostrarResultadoFinal(estado));
+  console.log(`Gracias por jugar, ${estado.username}!`);
+}
 
 export function ingresarUsuario(estado, username) {
-  if (typeof username !== "string" && username !== "")
+  if (typeof username !== "string" || username.trim() === "")
     return {
       ...estado,
       username: "Usuario",
     };
+
   return {
     ...estado,
     username,
@@ -52,7 +101,12 @@ export function checkearSiTerminaPartida(estado) {
 
   if (estado.vidas <= 0) return { ...estado, partidaTerminada: true };
 
-  return { ...estado, partidaTerminada: false };
+  for (const letra of estado.palabraAAdivinar) {
+    if (!estado.letrasYaAdivinadas.includes(letra.toUpperCase()))
+      return { ...estado, partidaTerminada: false };
+  }
+
+  return { ...estado, partidaTerminada: true };
 }
 
 export function mostrarResultadoFinal(estado) {
@@ -69,26 +123,26 @@ export function mostrarResultadoFinal(estado) {
   }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`;
 }
 
-//iniciarPartida();
-
 export function adivinarLetra(letra, estado) {
   const letraMayus = letra.toUpperCase();
 
-  // Ya fue adivinada
-  if (estado.letrasYaAdivinadas.includes(letraMayus))
-    return { ...estado, ultimoIntentoCorrecto: false };
+  if (estado.letrasYaAdivinadas.includes(letraMayus)) return { ...estado };
 
   // Verificar si está en la palabra
+  const intentoCorrecto = estado.palabraAAdivinar.includes(letraMayus);
+
   return {
     ...estado,
-    ultimoIntentoCorrecto: PALABRA_A_ADIVINAR.includes(letraMayus),
+    ultimoIntentoCorrecto: estado.palabraAAdivinar.includes(letraMayus),
+    letrasYaAdivinadas: [...estado.letrasYaAdivinadas, letraMayus],
+    vidas: intentoCorrecto ? estado.vidas : estado.vidas - 1,
   };
 }
 
 export function mostrarProgreso(estado) {
   const letras = estado.palabraAAdivinar.split("");
 
-  return letras
+  return `VIDAS: ${estado.vidas} - ${letras
     .map((letra) =>
       estado.letrasYaAdivinadas
         .map((l) => l.toUpperCase())
@@ -96,12 +150,14 @@ export function mostrarProgreso(estado) {
         ? letra.toUpperCase()
         : "_"
     )
-    .join(" ");
+    .join(" ")}`;
 }
 
 export function setearPalabraAAdivinar(estado, palabra = "ESCALERA") {
   return {
     ...estado,
-    palabraAAdivinar: palabra,
+    palabraAAdivinar: palabra.toUpperCase(),
   };
 }
+
+iniciarPartida();

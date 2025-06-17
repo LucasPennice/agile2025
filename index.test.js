@@ -33,17 +33,6 @@ describe("adivinarLetra", () => {
     expect(estadoInicial.ultimoIntentoCorrecto).toBe(true);
   });
 
-  it("test_no_se_puede_repetir_la_misma_letra", () => {
-    let estadoInicial = {
-      letrasYaAdivinadas: ["E", "D"],
-      palabraAAdivinar: "ESCALERA",
-      partidaTerminada: false,
-    };
-
-    estadoInicial = adivinarLetra("E", estadoInicial);
-    expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
-  });
-
   it("debe ser insensible a mayúsculas/minúsculas", () => {
     let estadoInicial = {
       letrasYaAdivinadas: [],
@@ -60,6 +49,43 @@ describe("adivinarLetra", () => {
 
     estadoInicial = adivinarLetra("j", estadoInicial);
     expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
+  });
+
+  it("test_comprobar_que_se_actualiza_letras_ya_adivinadas", () => {
+    let estado = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
+
+    estado = adivinarLetra("J", estado);
+
+    expect(estado.letrasYaAdivinadas.includes("J")).toBe(true);
+  });
+
+  it("test_comprobar_que_se_actualiza_vida_si_pierde", () => {
+    let estado = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      vidas: 3,
+    };
+
+    estado = adivinarLetra("Z", estado);
+
+    expect(estado.vidas).toBe(2);
+  });
+
+  it("test_comprobar_que_no_se_repita_letra", () => {
+    const estadoInicial = {
+      letrasYaAdivinadas: ["J"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+    };
+
+    const estado = adivinarLetra("J", estadoInicial);
+
+    expect(estado).toStrictEqual(estadoInicial);
   });
 });
 
@@ -84,9 +110,12 @@ describe("mostrarProgreso", () => {
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
+      vidas: 5,
     };
 
-    expect(mostrarProgreso(estadoInicial)).toBe("_ _ _ _ _ _ _ _");
+    expect(mostrarProgreso(estadoInicial)).toBe(
+      `VIDAS: ${estadoInicial.vidas} - _ _ _ _ _ _ _ _`
+    );
   });
 
   it("test_se_muestran_letras_adivinadas_y_guiones", () => {
@@ -95,9 +124,12 @@ describe("mostrarProgreso", () => {
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
+      vidas: 5,
     };
 
-    expect(mostrarProgreso(estadoInicial)).toBe("E _ _ A _ E _ A");
+    expect(mostrarProgreso(estadoInicial)).toBe(
+      `VIDAS: ${estadoInicial.vidas} - E _ _ A _ E _ A`
+    );
   });
 
   it("test_todas_las_letras_adivinadas_muestra_palabra_completa", () => {
@@ -106,9 +138,12 @@ describe("mostrarProgreso", () => {
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
+      vidas: 5,
     };
 
-    expect(mostrarProgreso(estadoInicial)).toBe("E S C A L E R A");
+    expect(mostrarProgreso(estadoInicial)).toBe(
+      `VIDAS: ${estadoInicial.vidas} - E S C A L E R A`
+    );
   });
 
   it("test_se_ignoran_mayusculas_minusculas_al_mostrar_progreso", () => {
@@ -117,8 +152,11 @@ describe("mostrarProgreso", () => {
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
+      vidas: 5,
     };
-    expect(mostrarProgreso(estadoInicial)).toBe("E _ _ A _ E _ A");
+    expect(mostrarProgreso(estadoInicial)).toBe(
+      `VIDAS: ${estadoInicial.vidas} - E _ _ A _ E _ A`
+    );
   });
 });
 
