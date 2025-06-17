@@ -57,7 +57,7 @@ async function leerPalabra(prompt = "Ingresa una palabra: ") {
 
 async function iniciarPartida() {
   let estado = {
-    letrasYaAdivinadas: [],
+    letrasYaIntentadas: [],
     palabraAAdivinar: "",
     partidaTerminada: false,
     ultimoIntentoCorrecto: true,
@@ -102,7 +102,7 @@ export function checkearSiTerminaPartida(estado) {
   if (estado.vidas <= 0) return { ...estado, partidaTerminada: true };
 
   for (const letra of estado.palabraAAdivinar) {
-    if (!estado.letrasYaAdivinadas.includes(letra.toUpperCase()))
+    if (!estado.letrasYaIntentadas.includes(letra.toUpperCase()))
       return { ...estado, partidaTerminada: false };
   }
 
@@ -116,17 +116,17 @@ export function mostrarResultadoFinal(estado) {
   if (estado.vidas > 0)
     return `¡Partida terminada! - Ganaste! - Palabra: ${
       estado.palabraAAdivinar
-    }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`;
+    }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`;
 
   return `¡Partida terminada! - Perdiste! - Palabra: ${
     estado.palabraAAdivinar
-  }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`;
+  }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`;
 }
 
 export function adivinarLetra(letra, estado) {
   const letraMayus = letra.toUpperCase();
 
-  if (estado.letrasYaAdivinadas.includes(letraMayus)) return { ...estado };
+  if (estado.letrasYaIntentadas.includes(letraMayus)) return { ...estado };
 
   // Verificar si está en la palabra
   const intentoCorrecto = estado.palabraAAdivinar.includes(letraMayus);
@@ -134,7 +134,7 @@ export function adivinarLetra(letra, estado) {
   return {
     ...estado,
     ultimoIntentoCorrecto: estado.palabraAAdivinar.includes(letraMayus),
-    letrasYaAdivinadas: [...estado.letrasYaAdivinadas, letraMayus],
+    letrasYaIntentadas: [...estado.letrasYaIntentadas, letraMayus],
     vidas: intentoCorrecto ? estado.vidas : estado.vidas - 1,
   };
 }
@@ -144,7 +144,7 @@ export function mostrarProgreso(estado) {
 
   return `VIDAS: ${estado.vidas} - ${letras
     .map((letra) =>
-      estado.letrasYaAdivinadas
+      estado.letrasYaIntentadas
         .map((l) => l.toUpperCase())
         .includes(letra.toUpperCase())
         ? letra.toUpperCase()

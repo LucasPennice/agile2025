@@ -11,7 +11,7 @@ import {
 describe("adivinarLetra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
     };
@@ -23,7 +23,7 @@ describe("adivinarLetra", () => {
 
   it("test_adivina_si_tiene_e_si_tiene", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
     };
@@ -35,7 +35,7 @@ describe("adivinarLetra", () => {
 
   it("debe ser insensible a mayúsculas/minúsculas", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
@@ -53,19 +53,19 @@ describe("adivinarLetra", () => {
 
   it("test_comprobar_que_se_actualiza_letras_ya_adivinadas", () => {
     let estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
     };
 
     estado = adivinarLetra("J", estado);
 
-    expect(estado.letrasYaAdivinadas.includes("J")).toBe(true);
+    expect(estado.letrasYaIntentadas.includes("J")).toBe(true);
   });
 
   it("test_comprobar_que_se_actualiza_vida_si_pierde", () => {
     let estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       vidas: 3,
@@ -78,7 +78,7 @@ describe("adivinarLetra", () => {
 
   it("test_comprobar_que_no_se_repita_letra", () => {
     const estadoInicial = {
-      letrasYaAdivinadas: ["J"],
+      letrasYaIntentadas: ["J"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
     };
@@ -92,13 +92,14 @@ describe("adivinarLetra", () => {
 describe("adivinaPalabra", () => {
   it("test_adivina_si_tiene_j_no_tiene", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
     };
 
     estadoInicial = adivinarLetra("J", estadoInicial);
+
     expect(estadoInicial.ultimoIntentoCorrecto).toBe(false);
   });
 });
@@ -106,7 +107,7 @@ describe("adivinaPalabra", () => {
 describe("mostrarProgreso", () => {
   it("test_no_se_adivino_ninguna_letra_muestra_guiones", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
@@ -120,7 +121,7 @@ describe("mostrarProgreso", () => {
 
   it("test_se_muestran_letras_adivinadas_y_guiones", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: ["E", "A"],
+      letrasYaIntentadas: ["E", "A"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
@@ -134,7 +135,7 @@ describe("mostrarProgreso", () => {
 
   it("test_todas_las_letras_adivinadas_muestra_palabra_completa", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      letrasYaIntentadas: ["E", "S", "C", "A", "L", "R"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
@@ -148,7 +149,7 @@ describe("mostrarProgreso", () => {
 
   it("test_se_ignoran_mayusculas_minusculas_al_mostrar_progreso", () => {
     let estadoInicial = {
-      letrasYaAdivinadas: ["e", "a"],
+      letrasYaIntentadas: ["e", "a"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
@@ -163,7 +164,7 @@ describe("mostrarProgreso", () => {
 describe("setearPalabraAAdivinar", () => {
   it("debe guardar la palabra a adivinar en el estado", () => {
     const estadoInicial = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
     };
@@ -177,7 +178,7 @@ describe("setearPalabraAAdivinar", () => {
 describe("ingresarUsuario", () => {
   it("test_no_debe_estar_vacio", () => {
     const estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
@@ -187,7 +188,7 @@ describe("ingresarUsuario", () => {
   });
   it("test_debe_ser_string", () => {
     const estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
@@ -200,7 +201,7 @@ describe("ingresarUsuario", () => {
 describe("mostrarResultadoFinal", () => {
   it("test_debe_mostrar_resultados_correctos_caso_perder", () => {
     const estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
@@ -212,13 +213,13 @@ describe("mostrarResultadoFinal", () => {
     expect(resultadoFinal).toBe(
       `¡Partida terminada! - Perdiste! - Palabra: ${
         estado.palabraAAdivinar
-      }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`
+      }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`
     );
   });
 
   it("test_debe_mostrar_resultados_correctos_caso_ganar", () => {
     const estado = {
-      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      letrasYaIntentadas: ["E", "S", "C", "A", "L", "R"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
@@ -230,7 +231,7 @@ describe("mostrarResultadoFinal", () => {
     expect(resultadoFinal).toBe(
       `¡Partida terminada! - Ganaste! - Palabra: ${
         estado.palabraAAdivinar
-      }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`
+      }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`
     );
   });
 
@@ -246,7 +247,7 @@ describe("mostrarResultadoFinal", () => {
 describe("checkearSiTerminaPartida", () => {
   it("test_debe_terminar_la_partida_caso_perder", () => {
     const estado = {
-      letrasYaAdivinadas: [],
+      letrasYaIntentadas: [],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
@@ -260,7 +261,7 @@ describe("checkearSiTerminaPartida", () => {
 
   it("test_debe_terminar_la_partida_caso_ganar", () => {
     const estado = {
-      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      letrasYaIntentadas: ["E", "S", "C", "A", "L", "R"],
       palabraAAdivinar: "ESCALERA",
       partidaTerminada: false,
       username: undefined,
