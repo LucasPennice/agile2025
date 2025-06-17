@@ -4,6 +4,7 @@ import {
   mostrarProgreso,
   setearPalabraAAdivinar,
   ingresarUsuario,
+  mostrarResultadoFinal,
 } from ".";
 
 describe("adivinarLetra", () => {
@@ -94,10 +95,9 @@ describe("mostrarProgreso", () => {
       partidaTerminada: false,
       ultimoIntentoCorrecto: true,
     };
-  
+
     expect(mostrarProgreso(estadoInicial)).toBe("E _ _ A _ E _ A");
   });
-  
 
   it("test_todas_las_letras_adivinadas_muestra_palabra_completa", () => {
     let estadoInicial = {
@@ -156,4 +156,44 @@ describe("ingresarUsuario", () => {
     const nuevoEstado = ingresarUsuario(estado, 123);
     expect(nuevoEstado.username).toBe("Usuario");
   });
+});
+
+describe("mostrarResultadoFinal", () => {
+  it("test_debe_mostrar_resultados_correctos_caso_perder", () => {
+    const estado = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      username: undefined,
+      vidas: 0,
+    };
+
+    const resultadoFinal = mostrarResultadoFinal(estado);
+
+    expect(resultadoFinal).toBe(
+      `¡Partida terminada! - Perdiste! - Palabra: ${
+        estado.palabraAAdivinar
+      }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`
+    );
+  });
+
+  it("test_debe_mostrar_resultados_correctos_caso_ganar", () => {
+    const estado = {
+      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      username: undefined,
+      vidas: 1,
+    };
+
+    const resultadoFinal = mostrarResultadoFinal(estado);
+
+    expect(resultadoFinal).toBe(
+      `¡Partida terminada! - Ganaste! - Palabra: ${
+        estado.palabraAAdivinar
+      }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`
+    );
+  });
+
+  it("test_debe_mostrar_default_si_estado_vacio", () => {});
 });

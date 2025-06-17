@@ -11,13 +11,15 @@
  */
 
 const PALABRA_A_ADIVINAR = "ESCALERA";
+
 /* 
 function iniciarPartida() {
   let estado = {
     letrasYaAdivinadas: [],
     palabraAAdivinar: "",
     partidaTerminada: false,
-    ultimoIntentoCorrecto: true
+    ultimoIntentoCorrecto: true,
+    vidas: 6,
   };
 
   estado = ingresarUsuario(estado);
@@ -45,7 +47,6 @@ export function ingresarUsuario(estado, username) {
   };
 }
 
-export function mostrarProgresoMigrar() {}
 export function checkearSiTerminaPartida() {}
 export function mostrarResultadoFinal() {}
 
