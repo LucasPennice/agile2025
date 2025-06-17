@@ -233,4 +233,10 @@ describe("checkearSiTerminaPartida", () => {
 
     expect(estadoNuevo.partidaTerminada).toBe(false);
   });
+
+  it("test_debe_terminar_la_partida_caso_estado_undefined", () => {
+    const estadoNuevo = checkearSiTerminaPartida();
+
+    expect(estadoNuevo.partidaTerminada).toBe(true);
+  });
 });
