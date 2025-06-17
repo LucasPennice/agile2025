@@ -48,6 +48,7 @@ export function ingresarUsuario(estado, username) {
 }
 
 export function checkearSiTerminaPartida() {}
+
 export function mostrarResultadoFinal(estado) {
   if (estado === undefined)
     return "Error al mostrar resultado final. Estado no definido.";

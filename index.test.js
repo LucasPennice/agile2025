@@ -5,6 +5,7 @@ import {
   setearPalabraAAdivinar,
   ingresarUsuario,
   mostrarResultadoFinal,
+  checkearSiTerminaPartida,
 } from ".";
 
 describe("adivinarLetra", () => {
@@ -201,5 +202,35 @@ describe("mostrarResultadoFinal", () => {
     expect(resultadoFinal).toBe(
       `Error al mostrar resultado final. Estado no definido.`
     );
+  });
+});
+
+describe("checkearSiTerminaPartida", () => {
+  it("test_debe_terminar_la_partida_caso_perder", () => {
+    const estado = {
+      letrasYaAdivinadas: [],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      username: undefined,
+      vidas: 0,
+    };
+
+    const estadoNuevo = checkearSiTerminaPartida(estado);
+
+    expect(estadoNuevo.partidaTerminada).toBe(true);
+  });
+
+  it("test_debe_terminar_la_partida_caso_ganar", () => {
+    const estado = {
+      letrasYaAdivinadas: ["E", "S", "C", "A", "L", "R"],
+      palabraAAdivinar: "ESCALERA",
+      partidaTerminada: false,
+      username: undefined,
+      vidas: 1,
+    };
+
+    const estadoNuevo = checkearSiTerminaPartida(estado);
+
+    expect(estadoNuevo.partidaTerminada).toBe(false);
   });
 });
