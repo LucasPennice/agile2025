@@ -47,7 +47,13 @@ export function ingresarUsuario(estado, username) {
   };
 }
 
-export function checkearSiTerminaPartida() {}
+export function checkearSiTerminaPartida(estado) {
+  if (estado === undefined) return { ...estado, partidaTerminada: true };
+
+  if (estado.vidas <= 0) return { ...estado, partidaTerminada: true };
+
+  return { ...estado, partidaTerminada: false };
+}
 
 export function mostrarResultadoFinal(estado) {
   if (estado === undefined)
