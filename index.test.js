@@ -195,5 +195,11 @@ describe("mostrarResultadoFinal", () => {
     );
   });
 
-  it("test_debe_mostrar_default_si_estado_vacio", () => {});
+  it("test_debe_mostrar_default_si_estado_vacio", () => {
+    const resultadoFinal = mostrarResultadoFinal();
+
+    expect(resultadoFinal).toBe(
+      `Error al mostrar resultado final. Estado no definido.`
+    );
+  });
 });
