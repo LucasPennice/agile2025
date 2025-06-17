@@ -49,7 +49,8 @@ export function ingresarUsuario(estado, username) {
 
 export function checkearSiTerminaPartida() {}
 export function mostrarResultadoFinal(estado) {
-  // if(estado === undefined) return ""
+  if (estado === undefined)
+    return "Error al mostrar resultado final. Estado no definido.";
 
   if (estado.vidas > 0)
     return `¡Partida terminada! - Ganaste! - Palabra: ${
