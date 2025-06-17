@@ -48,7 +48,18 @@ export function ingresarUsuario(estado, username) {
 }
 
 export function checkearSiTerminaPartida() {}
-export function mostrarResultadoFinal() {}
+export function mostrarResultadoFinal(estado) {
+  // if(estado === undefined) return ""
+
+  if (estado.vidas > 0)
+    return `¡Partida terminada! - Ganaste! - Palabra: ${
+      estado.palabraAAdivinar
+    }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`;
+
+  return `¡Partida terminada! - Perdiste! - Palabra: ${
+    estado.palabraAAdivinar
+  }. Letras adivinadas: ${estado.letrasYaAdivinadas.join(", ")}.`;
+}
 
 //iniciarPartida();
 
