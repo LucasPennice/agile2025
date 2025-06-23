@@ -1,0 +1,116 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1c1c1c;
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #00d8a3;
+  text-align: center;
+}
+
+#setup, #game {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#inputLetra {
+  width: 120px;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+  border-radius: 8px;
+  border: 2px solid #00d8a3;
+  background-color: #121212;
+  color: #00d8a3;
+  box-shadow: 0 0 8px rgba(0, 216, 163, 0.6);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  display: block;
+}
+
+#inputLetra::placeholder {
+  color: #005944;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+#inputLetra:focus {
+  border-color: #00ffa3;
+  box-shadow: 0 0 12px #00ffa3;
+  background-color: #161616;
+  color: #00ffa3;
+}
+
+
+
+button {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  margin: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #00d8a3;
+  color: #1c1c1c;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #00b88b;
+}
+
+button:disabled {
+  background-color: #444;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+#progreso {
+  font-size: 2rem;
+  letter-spacing: 0.4rem; /* ajustado */
+  margin: 1.5rem auto;
+  font-weight: bold;
+  user-select: none;
+  white-space: pre-wrap;
+  text-align: center;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+#mensaje {
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  min-height: 1.5rem;
+}
+
+#vidas {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
