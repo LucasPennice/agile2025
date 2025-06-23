@@ -71,9 +71,21 @@ export function adivinarLetra(letra, estado) {
 
 
 export function mostrarProgreso(estado) {
+  return `${mostrarVidas(estado)} - ${mostrarLetrasYaIntentadas(estado)}`;
+}
+
+export function mostrarVidas(estado) {
+  if (estado === undefined) return "Error al mostrar vidas. Estado no definido.";
+  return `VIDAS: ${estado.vidas}`;
+}
+
+export function mostrarLetrasYaIntentadas(estado) {
+  if (estado === undefined)
+    return "Error al mostrar letras ya intentadas. Estado no definido.";
+
   const letras = estado.palabraAAdivinar.split("");
 
-  return `VIDAS: ${estado.vidas} - ${letras
+  return `${letras
     .map((letra) =>
       estado.letrasYaIntentadas
         .map((l) => l.toUpperCase())
@@ -81,7 +93,7 @@ export function mostrarProgreso(estado) {
         ? letra.toUpperCase()
         : "_"
     )
-    .join(" ")}`;
+    .join(" ")}`
 }
 
 export function setearPalabraAAdivinar(estado, palabra = "ESCALERA") {

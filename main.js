@@ -4,9 +4,9 @@ import {
       ingresarUsuario,
       setearPalabraAAdivinar,
       adivinarLetra,
-      mostrarProgreso,
       checkearSiTerminaPartida,
       mostrarResultadoFinal,
+      mostrarLetrasYaIntentadas,
     } from './index.js';
 
     let estado = estadoInicial();
@@ -14,6 +14,8 @@ import {
     const setupDiv = document.getElementById('setup');
     const gameDiv = document.getElementById('game');
     const progresoPre = document.getElementById('progreso');
+    const letrasIntentadas = document.getElementById('letrasIntentadas');
+    const vidasRestantes = document.getElementById('vidasRestantes');
     const mensajeDiv = document.getElementById('mensaje');
     const inputLetra = document.getElementById('inputLetra');
     const intentarBtn = document.getElementById('intentarBtn');
@@ -23,7 +25,9 @@ import {
     const startBtn = document.getElementById('startBtn');
 
     function actualizarUI() {
-      progresoPre.textContent = mostrarProgreso(estado);
+      progresoPre.textContent = mostrarLetrasYaIntentadas(estado);
+      letrasIntentadas.textContent = estado.letrasYaIntentadas.join(', ');
+      vidasRestantes.textContent = `Vidas restantes: ${estado.vidasRestantes}`;
       if (estado.partidaTerminada) {
         mensajeDiv.textContent = mostrarResultadoFinal(estado);
         intentarBtn.disabled = true;
