@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ahorcado - TP Adaptado</title>
-<link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <h1>Juego del Ahorcado</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ahorcado - TP Adaptado</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Juego del Ahorcado</h1>
 
-  <div id="setup">
-    <input id="username" type="text" placeholder="Ingresa tu nombre" />
-    <input id="palabra" type="text" placeholder="Palabra a adivinar" />
-    <button id="startBtn">Iniciar Partida</button>
-  </div>
+    <div id="setup">
+      <input id="username" type="text" placeholder="Ingresa tu nombre" />
+      <input id="palabra" type="text" placeholder="Palabra a adivinar" />
+      <button id="startBtn">Iniciar Partida</button>
+    </div>
 
-  <div id="game" style="display:none;">
-    <pre id="progreso"></pre>
-    <div id="vidas"></div>
-    <div id="letrasUsadas"></div>    
-    <div id="mensaje"></div>
-    <input id="inputLetra" maxlength="1" placeholder="Ingresa letra" />
-    <button id="intentarBtn">Intentar Letra</button>
-    <button id="reiniciarBtn">Reiniciar</button>
-  </div>
+    <div id="game" style="display: none">
+      <pre id="progreso"></pre>
+      <div id="vidasRestantes"></div>
+      <div id="letrasIntentadas"></div>
+      <div id="mensaje"></div>
+      <input id="inputLetra" maxlength="1" placeholder="Ingresa letra" />
+      <button id="intentarBtn">Intentar Letra</button>
+      <button id="reiniciarBtn">Reiniciar</button>
+    </div>
 
-<script type="module" src="main.js"></script>
-
-</body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>
