@@ -23,6 +23,7 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install
+      - run: pnpm test
 
       - name: Lint
         run: pnpm eslint .
