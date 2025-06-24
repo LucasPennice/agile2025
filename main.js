@@ -25,8 +25,21 @@ const startBtn = document.getElementById("startBtn");
 
 function actualizarUI() {
   progresoPre.textContent = mostrarLetrasYaIntentadas(estado);
-  letrasIntentadas.textContent = estado.letrasYaIntentadas.join(", ");
+
+  letrasIntentadas.innerHTML = "";
+
+  estado.letrasYaIntentadas.forEach((letra) => {
+    const pill = document.createElement("span");
+    pill.textContent = letra;
+    pill.classList.add("pill");
+    pill.style.backgroundColor = estado.palabraAAdivinar.includes(letra)
+      ? "rgba(0, 216, 163, 0.6)"
+      : "rgba(255, 0, 0, 0.3)";
+    letrasIntentadas.appendChild(pill);
+  });
+
   vidasRestantes.textContent = `Vidas restantes: ${estado.vidas}`;
+
   if (estado.partidaTerminada) {
     mensajeDiv.textContent = mostrarResultadoFinal(estado);
     intentarBtn.disabled = true;

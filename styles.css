@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #1c1c1c;
   color: #f1f1f1;
   display: flex;
@@ -18,7 +18,8 @@ h1 {
   text-align: center;
 }
 
-#setup, #game {
+#setup,
+#game {
   background-color: #2a2a2a;
   padding: 2rem;
   border-radius: 12px;
@@ -68,7 +69,6 @@ input[type="text"] {
   color: #00ffa3;
 }
 
-
 button {
   font-size: 1rem;
   padding: 0.6rem 1.2rem;
@@ -113,5 +113,10 @@ button:disabled {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
- 
 
+.pill {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 5px;
+}
