@@ -77,6 +77,12 @@ intentarBtn.addEventListener("click", () => {
   actualizarUI();
 });
 
+inputLetra.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && inputLetra.value.trim() !== "") {
+    intentarBtn.click();
+  }
+});
+
 reiniciarBtn.addEventListener("click", () => {
   estado = estadoInicial();
   setupDiv.style.display = "block";
