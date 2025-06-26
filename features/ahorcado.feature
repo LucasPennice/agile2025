@@ -26,3 +26,16 @@ Feature: Juego del Ahorcado
     Then debe mostrarse el progreso como "A"
     And debe mostrarse el mensaje final como "¡Partida terminada! - Ganaste! - Palabra: A. Letras adivinadas: A."
     And debe mostrarse la cantidad de vidas como 6
+  
+  Scenario: El jugador pierde la partida
+    Given el jugador ingresa el nombre "Franco"
+    And la palabra secreta es "Z"
+    And el jugador adivina la letra "A"
+    And el jugador adivina la letra "B"
+    And el jugador adivina la letra "C"
+    And el jugador adivina la letra "D"
+    And el jugador adivina la letra "E"
+    And el jugador adivina la letra "F"
+    Then debe mostrarse el progreso como "_"
+    And debe mostrarse el mensaje final como "¡Partida terminada! - Perdiste! - Palabra: Z. Letras adivinadas: A, B, C, D, E, F."
+    And debe mostrarse la cantidad de vidas como 0
