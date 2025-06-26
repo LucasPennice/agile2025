@@ -41,7 +41,7 @@ function actualizarUI() {
   vidasRestantes.textContent = `Vidas restantes: ${estado.vidas}`;
 
   if (estado.partidaTerminada) {
-    mensajeDiv.textContent = mostrarResultadoFinal(estado);
+    mensajeDiv.innerHTML  = mostrarResultadoFinal(estado);
     intentarBtn.disabled = true;
     inputLetra.disabled = true;
   } else {

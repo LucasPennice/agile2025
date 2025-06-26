@@ -40,13 +40,9 @@ export function mostrarResultadoFinal(estado) {
     return "Error al mostrar resultado final. Estado no definido.";
 
   if (estado.vidas > 0)
-    return `¡Partida terminada! - Ganaste! - Palabra: ${
-      estado.palabraAAdivinar
-    }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`;
+    return "¡Partida terminada! - ¡Ganaste!<br>Felicitaciones.";
 
-  return `¡Partida terminada! - Perdiste! - Palabra: ${
-    estado.palabraAAdivinar
-  }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`;
+  return `¡Partida terminada! - ¡Perdiste!<br>La palabra era: ${estado.palabraAAdivinar}`;
 }
 
 export function adivinarLetra(letra, estado) {
@@ -69,13 +65,13 @@ export function adivinarLetra(letra, estado) {
   return checkearSiTerminaPartida(nuevoEstado);
 }
 
-
 export function mostrarProgreso(estado) {
   return `${mostrarVidas(estado)} - ${mostrarLetrasYaIntentadas(estado)}`;
 }
 
 export function mostrarVidas(estado) {
-  if (estado === undefined) return "Error al mostrar vidas. Estado no definido.";
+  if (estado === undefined)
+    return "Error al mostrar vidas. Estado no definido.";
   return `VIDAS: ${estado.vidas}`;
 }
 
@@ -93,7 +89,7 @@ export function mostrarLetrasYaIntentadas(estado) {
         ? letra.toUpperCase()
         : "_"
     )
-    .join(" ")}`
+    .join(" ")}`;
 }
 
 export function setearPalabraAAdivinar(estado, palabra = "ESCALERA") {
