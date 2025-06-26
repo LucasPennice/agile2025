@@ -27,10 +27,25 @@ Given('la palabra secreta es {string}', async (palabra) => {
   await page.click('#startBtn');
 });
 
+Given('el jugador adivina la letra {string}', async (letra) => {
+  await page.waitForSelector('#inputLetra');
+  await page.type('#inputLetra', letra);
+  await page.click('#intentarBtn');
+});
+
 Then('debe mostrarse el progreso como {string}', async (textoEsperado) => {
   await page.waitForSelector('#progreso');
   const progreso = await page.$eval('#progreso', el => el.textContent.trim());
   if (progreso !== textoEsperado) {
     throw new Error(`Esperaba "${textoEsperado}" pero se mostró "${progreso}"`);
+  }
+});
+
+Then('debe mostrarse la cantidad de vidas como {int}', async (vidasEsperadas) => {
+  await page.waitForSelector('#vidasRestantes');
+  const textoVidas = await page.$eval('#vidasRestantes', el => el.textContent.trim());
+  const esperado = `Vidas restantes: ${vidasEsperadas}`;
+  if (textoVidas !== esperado) {
+    throw new Error(`Esperaba "${esperado}" pero se mostró "${textoVidas}"`);
   }
 });
