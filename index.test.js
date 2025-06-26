@@ -211,9 +211,7 @@ describe("mostrarResultadoFinal", () => {
     const resultadoFinal = mostrarResultadoFinal(estado);
 
     expect(resultadoFinal).toBe(
-      `¡Partida terminada! - Perdiste! - Palabra: ${
-        estado.palabraAAdivinar
-      }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`
+      `¡Partida terminada! - ¡Perdiste!<br>La palabra era: ${estado.palabraAAdivinar}`
     );
   });
 
@@ -229,9 +227,7 @@ describe("mostrarResultadoFinal", () => {
     const resultadoFinal = mostrarResultadoFinal(estado);
 
     expect(resultadoFinal).toBe(
-      `¡Partida terminada! - Ganaste! - Palabra: ${
-        estado.palabraAAdivinar
-      }. Letras adivinadas: ${estado.letrasYaIntentadas.join(", ")}.`
+      "¡Partida terminada! - ¡Ganaste!<br>Felicitaciones."
     );
   });
 

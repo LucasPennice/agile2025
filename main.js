@@ -41,7 +41,7 @@ function actualizarUI() {
   vidasRestantes.textContent = `Vidas restantes: ${estado.vidas}`;
 
   if (estado.partidaTerminada) {
-    mensajeDiv.innerHTML  = mostrarResultadoFinal(estado);
+    mensajeDiv.innerHTML = mostrarResultadoFinal(estado);
     intentarBtn.disabled = true;
     inputLetra.disabled = true;
   } else {
@@ -86,7 +86,7 @@ intentarBtn.addEventListener("click", () => {
     return;
   }
   estado = adivinarLetra(letra, estado);
-  //está demás - estado = checkearSiTerminaPartida(estado); 
+  //está demás - estado = checkearSiTerminaPartida(estado);
   actualizarUI();
 });
 
