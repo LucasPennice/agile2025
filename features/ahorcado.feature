@@ -24,7 +24,7 @@ Feature: Juego del Ahorcado
     And la palabra secreta es "A"
     And el jugador adivina la letra "A"
     Then debe mostrarse el progreso como "A"
-    And debe mostrarse el mensaje final como "¡Partida terminada! - Ganaste! - Palabra: A. Letras adivinadas: A."
+    And debe mostrarse el mensaje final como "¡Partida terminada! - ¡Ganaste!Felicitaciones."
     And debe mostrarse la cantidad de vidas como 6
   
   Scenario: El jugador pierde la partida
@@ -37,5 +37,5 @@ Feature: Juego del Ahorcado
     And el jugador adivina la letra "E"
     And el jugador adivina la letra "F"
     Then debe mostrarse el progreso como "_"
-    And debe mostrarse el mensaje final como "¡Partida terminada! - Perdiste! - Palabra: Z. Letras adivinadas: A, B, C, D, E, F."
+    And debe mostrarse el mensaje final como "¡Partida terminada! - ¡Perdiste!La palabra era: Z"
     And debe mostrarse la cantidad de vidas como 0
