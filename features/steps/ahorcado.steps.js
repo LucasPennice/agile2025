@@ -41,6 +41,14 @@ Then('debe mostrarse el progreso como {string}', async (textoEsperado) => {
   }
 });
 
+Then('debe mostrarse el mensaje final como {string}', async (mensajeEsperado) => {
+  await page.waitForSelector('#mensaje');
+  const mensaje = await page.$eval('#mensaje', el => el.textContent.trim());
+  if (mensaje !== mensajeEsperado) {
+    throw new Error(`Esperaba mensaje "${mensajeEsperado}" pero se mostró "${mensaje}"`);
+  }
+});
+
 Then('debe mostrarse la cantidad de vidas como {int}', async (vidasEsperadas) => {
   await page.waitForSelector('#vidasRestantes');
   const textoVidas = await page.$eval('#vidasRestantes', el => el.textContent.trim());
