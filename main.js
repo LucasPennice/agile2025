@@ -3,7 +3,7 @@ import {
   ingresarUsuario,
   setearPalabraAAdivinar,
   adivinarLetra,
-  checkearSiTerminaPartida,
+  //está de más - checkearSiTerminaPartida,
   mostrarResultadoFinal,
   mostrarLetrasYaIntentadas,
 } from "./index.js";
@@ -67,7 +67,7 @@ startBtn.addEventListener("click", () => {
     return;
   }
 
-  estado = estadoInicial();
+  //está demás - estado = estadoInicial();
   estado = ingresarUsuario(estado, username);
   estado = setearPalabraAAdivinar(estado, palabra);
   estado.partidaTerminada = false;
@@ -86,7 +86,7 @@ intentarBtn.addEventListener("click", () => {
     return;
   }
   estado = adivinarLetra(letra, estado);
-  estado = checkearSiTerminaPartida(estado);
+  //está demás - estado = checkearSiTerminaPartida(estado); 
   actualizarUI();
 });
 
