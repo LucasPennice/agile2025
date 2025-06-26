@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer';
 let browser, page;
 
 BeforeAll(async () => {
-  browser = await puppeteer.launch({ headless: false, slowMo: 100 });
+  browser = await puppeteer.launch({ headless: true/*, slowMo: 100 */});
   page = await browser.newPage();
   await page.goto('https://agile2025.vercel.app/ '); // Cambiá esto según tu servidor
 });
