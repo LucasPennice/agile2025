@@ -6,7 +6,10 @@ const BASE_URL = "http://localhost:3000";
 let browser, page;
 
 BeforeAll(async () => {
-  browser = await puppeteer.launch({ headless: true });
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   page = await browser.newPage();
   await page.goto(BASE_URL); // Cambiá esto según tu servidor
 });
