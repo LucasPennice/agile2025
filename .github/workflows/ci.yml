@@ -66,6 +66,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+
       - run: pnpm install
 
       - name: Test + Coverage
