@@ -72,7 +72,7 @@ export function mostrarProgreso(estado) {
 export function mostrarVidas(estado) {
   if (estado === undefined)
     return "Error al mostrar vidas. Estado no definido.";
-  return `VIDAS: ${estado.vidas}`;
+  return `VIDAS2: ${estado.vidas}`;
 }
 
 export function mostrarLetrasYaIntentadas(estado) {
