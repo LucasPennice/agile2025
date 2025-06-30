@@ -11,7 +11,7 @@ BeforeAll(async () => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   page = await browser.newPage();
-  await page.goto(BASE_URL); // Cambiá esto según tu servidor
+  await page.goto(BASE_URL);
 });
 
 AfterAll(async () => {

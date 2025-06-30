@@ -93,7 +93,8 @@ button:disabled {
 
 #progreso {
   font-size: 2rem;
-  letter-spacing: 0.4rem; /* ajustado */
+  letter-spacing: 0.4rem;
+
   margin: 1.5rem auto;
   font-weight: bold;
   user-select: none;
@@ -105,7 +106,7 @@ button:disabled {
 
 #mensaje {
   font-size: 1.1rem;
-  margin-top: 0.9rem ;  
+  margin-top: 0.9rem;
   margin-bottom: 1rem;
   font-weight: bold;
   min-height: 0rem;

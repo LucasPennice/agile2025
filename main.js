@@ -86,7 +86,7 @@ intentarBtn.addEventListener("click", () => {
     return;
   }
   estado = adivinarLetra(letra, estado);
-  //está demás - estado = checkearSiTerminaPartida(estado);
+
   actualizarUI();
 });
 
