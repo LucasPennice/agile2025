@@ -24,7 +24,7 @@ jobs:
 
       - run: pnpm install
 
-      - name: Run Unit Tests
+      - name: Run Unit Tests + Coverage
         run: pnpm test
 
       - name: Run E2E Tests
@@ -33,15 +33,12 @@ jobs:
       - name: Lint
         run: pnpm eslint .
 
-      - name: Test + Coverage
-        run: pnpm vitest run --coverage
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: .
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONARCLOUD_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
   deploy:
     needs: build
