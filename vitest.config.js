@@ -10,6 +10,8 @@ export default defineConfig({
         "**/*.steps.js",
         "main.js",
       ],
+      reporter: ["text", "json", "lcov"],
+      reportsDirectory: "./coverage",
     },
   },
 });

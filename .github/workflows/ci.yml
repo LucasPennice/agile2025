@@ -36,10 +36,12 @@ jobs:
       - name: Test + Coverage
         run: pnpm vitest run --coverage
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          projectBaseDir: .
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
     needs: build
